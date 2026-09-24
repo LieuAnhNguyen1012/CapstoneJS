@@ -1,0 +1,24 @@
+{
+  "name": "capstonejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LieuAnhNguyen1012/CapstoneJS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/LieuAnhNguyen1012/CapstoneJS/issues"
+  },
+  "homepage": "https://github.com/LieuAnhNguyen1012/CapstoneJS#readme",
+  "devDependencies": {
+    "sass": "^1.105.0"
+  }
+}

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Phone Store</title>
+    <link rel="stylesheet" href="./assets/css/main.css" />
+  </head>
+  <body>
+    <header>
+      <a href="./index.html">Phone Store</a>
+
+      <nav aria-label="Điều hướng chính">
+        <a href="./admin/">Quản trị sản phẩm</a>
+      </nav>
+    </header>
+    <main>
+      <section aria-labelledby="products-title">
+        <h1 id="products-title">Điện thoại</h1>
+
+        <label for="product-filter">Lọc theo hãng</label>
+        <select id="product-filter">
+          <option value="all">Tất cả</option>
+          <option value="iphone">iPhone</option>
+          <option value="samsung">Samsung</option>
+        </select>
+
+        <div id="product-list">
+          <p>Đang chuẩn bị danh sách sản phẩm...</p>
+        </div>
+      </section>
+    </main>
+    <aside aria-labelledby="cart-title">
+      <h2 id="cart-title">Giỏ hàng</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Sản phẩm</th>
+            <th scope="col">Giá</th>
+            <th scope="col">Số lượng</th>
+            <th scope="col">Thành tiền</th>
+            <th scope="col">Thao tác</th>
+          </tr>
+        </thead>
+        <tbody id="cart-items"></tbody>
+      </table>
+
+      <p>Tổng tiền: <strong id="cart-total">0</strong></p>
+      <button type="button" id="checkout-button">Thanh toán</button>
+    </aside>
+
+    <!-- Script -->
+    <script type="module" src="./assets/js/main.js"></script>
+  </body>
+</html>
