@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản trị sản phẩm</title>
+    <link rel="stylesheet" href="../assets/css/main.css" />
+  </head>
+
+  <body>
+    <header>
+      <a href="../index.html">Phone Store</a>
+
+      <nav aria-label="Điều hướng chính">
+        <a href="../index.html">Về trang bán hàng</a>
+      </nav>
+    </header>
+
+    <main>
+      <h1>Quản trị sản phẩm</h1>
+
+      <section aria-label="Công cụ quản lý sản phẩm">
+        <label for="admin-search">Tìm theo tên</label>
+        <input
+          id="admin-search"
+          type="search"
+          placeholder="Nhập tên sản phẩm"
+        />
+        <label for="admin-sort">Sắp xếp theo giá</label>
+        <select id="admin-sort">
+          <option value="default">Mặc định</option>
+          <option value="asc">Giá thấp đến cao</option>
+          <option value="desc">Giá cao đến thấp</option>
+        </select>
+
+        <button type="button" id="add-product-button">Thêm sản phẩm</button>
+      </section>
+
+      <section aria-labelledby="admin-products-title">
+        <h2 id="admin-products-title">Danh sách sản phẩm</h2>
+
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Ảnh</th>
+              <th scope="col">Tên sản phẩm</th>
+              <th scope="col">Loại</th>
+              <th scope="col">Giá</th>
+              <th scope="col">Thao tác</th>
+            </tr>
+          </thead>
+          <tbody id="admin-product-list"></tbody>
+        </table>
+      </section>
+    </main>
+  </body>
+</html>

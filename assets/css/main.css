@@ -168,4 +168,19 @@ aside[aria-labelledby=cart-title] p {
   background-color: #1e40af;
 }
 
+#cart-items button {
+  min-width: 32px;
+  margin: 0 4px;
+  padding: 6px 9px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  background-color: #f8fafc;
+  color: #172554;
+  font: inherit;
+  cursor: pointer;
+}
+#cart-items button:hover {
+  background-color: #e2e8f0;
+}
+
 /*# sourceMappingURL=main.css.map */
