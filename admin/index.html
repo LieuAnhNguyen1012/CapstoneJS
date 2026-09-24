@@ -36,6 +36,49 @@
         <button type="button" id="add-product-button">Thêm sản phẩm</button>
       </section>
 
+      <section
+        id="product-form-section"
+        aria-labelledby="product-form-title"
+        hidden
+      >
+        <h2 id="product-form-title">Thêm sản phẩm</h2>
+
+        <form id="product-form" novalidate>
+          <label for="product-name">Tên sản phẩm</label>
+          <input id="product-name" name="name" type="text" />
+
+          <label for="product-price">Giá</label>
+          <input id="product-price" name="price" type="number" step="any" />
+
+          <label for="product-type">Loại sản phẩm</label>
+          <select id="product-type" name="type">
+            <option value="">Chọn loại</option>
+            <option value="iphone">iPhone</option>
+            <option value="samsung">Samsung</option>
+          </select>
+
+          <label for="product-screen">Màn hình</label>
+          <input id="product-screen" name="screen" type="text" />
+
+          <label for="product-back-camera">Camera sau</label>
+          <input id="product-back-camera" name="backCamera" type="text" />
+
+          <label for="product-front-camera">Camera trước</label>
+          <input id="product-front-camera" name="frontCamera" type="text" />
+
+          <label for="product-img">Đường dẫn ảnh</label>
+          <input id="product-img" name="img" type="url" />
+
+          <label for="product-desc">Mô tả</label>
+          <textarea id="product-desc" name="desc" rows="3"></textarea>
+
+          <p id="product-form-error" role="alert" hidden></p>
+
+          <button type="submit" id="product-submit-button">Lưu sản phẩm</button>
+          <button type="button" id="cancel-product-button">Hủy</button>
+        </form>
+      </section>
+
       <section aria-labelledby="admin-products-title">
         <h2 id="admin-products-title">Danh sách sản phẩm</h2>
 
@@ -53,5 +96,8 @@
         </table>
       </section>
     </main>
+
+    <script src="../assets/js/vendor/axios.min.js"></script>
+    <script type="module" src="../assets/js/admin.js"></script>
   </body>
 </html>

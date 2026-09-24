@@ -1,6 +1,6 @@
 import { Products } from "../models/Products.js";
 
-const PRODUCT_API_URL = "https://6ab377bb217e436588310572.mockapi.io/Products";
+export const PRODUCT_API_URL = "https://6ab377bb217e436588310572.mockapi.io/Products";
 
 export async function getProducts() {
   const response = await fetch(PRODUCT_API_URL);

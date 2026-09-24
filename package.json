@@ -20,5 +20,8 @@
   "homepage": "https://github.com/LieuAnhNguyen1012/CapstoneJS#readme",
   "devDependencies": {
     "sass": "^1.105.0"
+  },
+  "dependencies": {
+    "axios": "^1.20.0"
   }
 }

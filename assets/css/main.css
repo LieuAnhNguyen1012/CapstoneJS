@@ -183,4 +183,34 @@ aside[aria-labelledby=cart-title] p {
   background-color: #e2e8f0;
 }
 
+.admin-product-image {
+  display: block;
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}
+
+section[aria-labelledby=admin-products-title] {
+  margin-top: 32px;
+  padding: 24px;
+  overflow-x: auto;
+  border-radius: 16px;
+  background-color: #ffffff;
+}
+section[aria-labelledby=admin-products-title] h2 {
+  margin: 0 0 20px;
+  color: #172554;
+}
+section[aria-labelledby=admin-products-title] table {
+  width: 100%;
+  min-width: 700px;
+  border-collapse: collapse;
+}
+section[aria-labelledby=admin-products-title] th,
+section[aria-labelledby=admin-products-title] td {
+  padding: 12px;
+  border-bottom: 1px solid #e2e8f0;
+  text-align: left;
+}
+
 /*# sourceMappingURL=main.css.map */
