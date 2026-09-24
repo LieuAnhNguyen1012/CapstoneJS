@@ -2,15 +2,15 @@ import { getProducts } from "./services/productServices.js";
 import { Cart } from "./models/Cart.js";
 const cart = new Cart();
 try {
-  const savedItems = JSON.parse(
-    localStorage.getItem("phoneStoreCart") ?? "[]"
-  );
+    const savedItems = JSON.parse(
+        localStorage.getItem("phoneStoreCart") ?? "[]"
+    );
 
-  if (Array.isArray(savedItems)) {
-    cart.items = savedItems;
-  }
+    if (Array.isArray(savedItems)) {
+        cart.items = savedItems;
+    }
 } catch (error) {
-  console.error("Không đọc được giỏ hàng đã lưu:", error);
+    console.error("Không đọc được giỏ hàng đã lưu:", error);
 }
 
 
@@ -79,7 +79,12 @@ function renderCart() {
         });
 
         actionCell.append(removeButton);
-
+        
+        nameCell.dataset.label = "Sản phẩm";
+        priceCell.dataset.label = "Giá";
+        quantityCell.dataset.label = "Số lượng";
+        subtotalCell.dataset.label = "Thành tiền";
+        actionCell.dataset.label = "Thao tác";
         row.append(nameCell, priceCell, quantityCell, subtotalCell, actionCell);
         cartItems.append(row);
     });

@@ -1,138 +1,244 @@
-$text-color: #1f2937;
+// ==================================================
+// 1. Design tokens
+// ==================================================
 
-body {
-  color: $text-color;
-}
-body {
-  color: #1f2937;
+$background: #f8fafc;
+$surface: #ffffff;
+$ink: #0f172a;
+$muted: #64748b;
+$primary: #2563eb;
+$primary-hover: #1d4ed8;
+$primary-soft: #eff6ff;
+$border: #e2e8f0;
+$danger: #dc2626;
+$danger-soft: #fef2f2;
+
+$shadow-card:
+  0 4px 12px rgba(15, 23, 42, 0.035),
+  0 14px 32px rgba(15, 23, 42, 0.045);
+
+$shadow-card-hover:
+  0 10px 22px rgba(15, 23, 42, 0.07),
+  0 24px 48px rgba(15, 23, 42, 0.09);
+
+@mixin panel($radius: 20px) {
+  border: 1px solid $border;
+  border-radius: $radius;
+  background-color: $surface;
+  box-shadow: $shadow-card;
 }
 
-/*# sourceMappingURL=main.css.map */
+@mixin field {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid $border;
+  border-radius: 10px;
+  background-color: $surface;
+  color: $ink;
+  font: inherit;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: #94a3b8;
+  }
+
+  &:focus-visible {
+    border-color: $primary;
+  }
+}
+
+// ==================================================
+// 2. Base
+// ==================================================
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  line-height: 1.5;
-  background-color: #f5f7fb;
+html {
+  scroll-behavior: smooth;
 }
 
+body {
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(
+      circle at 12% 8%,
+      rgba(59, 130, 246, 0.075),
+      transparent 28rem
+    ),
+    radial-gradient(
+      circle at 90% 36%,
+      rgba(148, 163, 184, 0.08),
+      transparent 32rem
+    ),
+    $background;
+  color: $ink;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.55;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  transition: all 0.2s ease;
+}
+
+button:not(:disabled) {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.28);
+  outline-offset: 3px;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+h1,
+h2 {
+  color: $ink;
+  line-height: 1.15;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 5.5vw, 4.75rem);
+  font-weight: 700;
+  letter-spacing: -0.055em;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+}
+
+// ==================================================
+// 3. Header
+// ==================================================
+
 header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  padding: 18px clamp(16px, 5vw, 72px);
-  background-color: #ffffff;
-  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.06);
+  gap: 20px;
+  padding: 17px clamp(16px, 5vw, 72px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+  background-color: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(14px);
 
   a {
-    color: #172554;
-    font-weight: 700;
+    color: $ink;
     text-decoration: none;
   }
 
+  > a {
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+  }
+
   nav a {
+    display: inline-block;
+    padding: 9px 15px;
+    border: 1px solid $border;
+    border-radius: 999px;
+    background-color: $surface;
     font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+
+    &:hover {
+      border-color: #bfdbfe;
+      background-color: $primary-soft;
+      color: $primary-hover;
+    }
   }
 }
+
+// ==================================================
+// 4. Main content
+// ==================================================
 
 main {
-  width: min(100% - 32px, 1200px);
+  width: min(100% - 40px, 1240px);
   margin: 0 auto;
-  padding: 48px 0;
+  padding: clamp(40px, 6vw, 76px) 0 48px;
 
   h1 {
-    margin: 0 0 24px;
-    color: #172554;
-    font-size: clamp(28px, 4vw, 44px);
-    line-height: 1.15;
+    max-width: 1050px;
+    margin: 0 0 30px;
   }
 }
+
+// ==================================================
+// 5. Store filter
+// ==================================================
 
 label[for="product-filter"] {
   display: block;
-  margin-bottom: 8px;
-  color: #334155;
+  margin-bottom: 9px;
+  color: $muted;
+  font-size: 14px;
   font-weight: 600;
 }
 
 #product-filter {
-  width: min(100%, 240px);
-  padding: 11px 14px;
-  border: 1px solid #cbd5e1;
-  border-radius: 8px;
-  background-color: #ffffff;
-  color: #172554;
-  font: inherit;
+  @include field;
+
+  width: min(100%, 260px);
   cursor: pointer;
 }
+
+// ==================================================
+// 6. Product grid and cards
+// ==================================================
 
 #product-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
-  gap: 24px;
-  margin-top: 28px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 255px), 1fr));
+  gap: 22px;
+  margin-top: 30px;
 }
 
-aside[aria-labelledby="cart-title"] {
-  width: min(100% - 32px, 1200px);
-  margin: 0 auto 64px;
-  padding: 24px;
-  overflow-x: auto;
-  border-radius: 16px;
-  background-color: #ffffff;
-  box-shadow: 0 8px 28px rgba(15, 23, 42, 0.08);
-
-  h2 {
-    margin: 0 0 20px;
-    color: #172554;
-  }
-}
-
-aside table {
-  width: 100%;
-  min-width: 620px;
-  border-collapse: collapse;
-
-  th,
-  td {
-    padding: 14px 12px;
-    border-bottom: 1px solid #e2e8f0;
-    text-align: left;
+@keyframes card-fade-in {
+  from {
+    opacity: 0;
   }
 
-  th {
-    color: #475569;
-    font-size: 14px;
-  }
-}
-
-aside[aria-labelledby="cart-title"] p {
-  margin: 24px 0 16px;
-  font-size: 18px;
-}
-
-#cart-total {
-  color: #172554;
-}
-
-#checkout-button {
-  padding: 12px 20px;
-  border: 0;
-  border-radius: 8px;
-  background-color: #172554;
-  color: #ffffff;
-  font: inherit;
-  font-weight: 700;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #1e40af;
+  to {
+    opacity: 1;
   }
 }
 
@@ -140,90 +246,533 @@ aside[aria-labelledby="cart-title"] p {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  padding: 20px;
-  border: 1px solid #e2e8f0;
-  border-radius: 16px;
-  background-color: #ffffff;
+  min-width: 0;
+  padding: 16px;
+  overflow: hidden;
+  @include panel(20px);
+  animation: card-fade-in 0.4s ease both;
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: #bfdbfe;
+    box-shadow: $shadow-card-hover;
+  }
 
   img {
+    display: block;
     width: 100%;
-    height: 220px;
+    height: 230px;
+    padding: 18px;
+    border-radius: 14px;
+    background:
+      radial-gradient(circle at 50% 35%, #ffffff, #f1f5f9 78%);
     object-fit: contain;
+    transition: transform 0.25s ease;
+  }
+
+  &:hover img {
+    transform: scale(1.045);
   }
 
   h2 {
-    margin: 0;
-    color: #172554;
-    font-size: 18px;
+    margin: 4px 2px 0;
+    font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.35;
   }
 }
 
 .product-price {
-  margin: auto 0 0;
-  color: #0f172a;
+  margin: auto 2px 3px;
+  color: $ink;
+  font-size: 19px;
   font-weight: 700;
 }
 
 .add-to-cart {
-  padding: 12px 16px;
-  border: 0;
-  border-radius: 8px;
-  background-color: #172554;
+  min-height: 46px;
+  padding: 11px 16px;
+  border: 1px solid $primary;
+  border-radius: 10px;
+  background-color: $primary;
   color: #ffffff;
-  font: inherit;
-  font-weight: 700;
-  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
 
   &:hover {
-    background-color: #1e40af;
+    transform: translateY(-2px);
+    border-color: $primary-hover;
+    background-color: $primary-hover;
+    box-shadow: 0 9px 20px rgba(37, 99, 235, 0.2);
   }
 }
 
-#cart-items button {
-  min-width: 32px;
-  margin: 0 4px;
-  padding: 6px 9px;
-  border: 1px solid #cbd5e1;
-  border-radius: 6px;
-  background-color: #f8fafc;
-  color: #172554;
-  font: inherit;
-  cursor: pointer;
+// ==================================================
+// 7. Shopping cart
+// ==================================================
 
-  &:hover {
-    background-color: #e2e8f0;
-  }
-}
-
-.admin-product-image {
-  display: block;
-  width: 64px;
-  height: 64px;
-  object-fit: contain;
-}
-
-section[aria-labelledby="admin-products-title"] {
-  margin-top: 32px;
-  padding: 24px;
+aside[aria-labelledby="cart-title"] {
+  width: min(100% - 40px, 1240px);
+  margin: 0 auto 72px;
+  padding: clamp(20px, 3vw, 32px);
   overflow-x: auto;
-  border-radius: 16px;
-  background-color: #ffffff;
+  @include panel(20px);
 
   h2 {
     margin: 0 0 20px;
-    color: #172554;
   }
 
   table {
     width: 100%;
-    min-width: 700px;
+    min-width: 680px;
     border-collapse: collapse;
   }
 
   th,
   td {
-    padding: 12px;
-    border-bottom: 1px solid #e2e8f0;
+    padding: 12px 16px;
+    border-bottom: 1px solid $border;
     text-align: left;
+  }
+
+  th {
+    color: $muted;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  p {
+    margin: 24px 0 16px;
+    font-size: 18px;
+    font-weight: 500;
+  }
+}
+
+#cart-items button {
+  min-width: 35px;
+  min-height: 35px;
+  margin: 0 3px;
+  padding: 5px 9px;
+  border: 1px solid $border;
+  border-radius: 8px;
+  background-color: $surface;
+  color: $ink;
+  font-weight: 600;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: #93c5fd;
+    background-color: $primary-soft;
+    color: $primary-hover;
+  }
+}
+
+#cart-total {
+  color: $primary-hover;
+  font-size: 21px;
+  font-weight: 700;
+}
+
+#checkout-button {
+  min-height: 46px;
+  padding: 11px 22px;
+  border: 1px solid $primary;
+  border-radius: 10px;
+  background-color: $primary;
+  color: #ffffff;
+  font-weight: 600;
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: $primary-hover;
+    background-color: $primary-hover;
+    box-shadow: 0 9px 20px rgba(37, 99, 235, 0.2);
+  }
+}
+
+// ==================================================
+// 8. Admin tools
+// ==================================================
+
+section[aria-label="Công cụ quản lý sản phẩm"] {
+  display: grid;
+  grid-template-columns:
+    max-content minmax(130px, 1fr)
+    max-content minmax(160px, 1fr)
+    auto;
+  align-items: center;
+  gap: 12px;
+  padding: 20px;
+  @include panel(18px);
+
+  label {
+    color: $muted;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  input,
+  select {
+    @include field;
+  }
+}
+
+// ==================================================
+// 9. Admin product form
+// ==================================================
+
+#product-form-section {
+  margin-top: 26px;
+  padding: clamp(20px, 3vw, 30px);
+  @include panel(20px);
+
+  h2 {
+    margin: 0 0 22px;
+  }
+}
+
+#product-form {
+  display: grid;
+  grid-template-columns: minmax(140px, 200px) minmax(0, 1fr);
+  align-items: center;
+  gap: 13px 20px;
+
+  label {
+    color: $muted;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  input,
+  select,
+  textarea {
+    @include field;
+  }
+
+  textarea {
+    min-height: 90px;
+    resize: vertical;
+  }
+
+  button {
+    min-height: 44px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+}
+
+#product-form-error {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: $danger;
+  font-weight: 600;
+}
+
+#product-submit-button {
+  border: 1px solid $primary;
+  background-color: $primary;
+  color: #ffffff;
+
+  &:hover {
+    border-color: $primary-hover;
+    background-color: $primary-hover;
+  }
+}
+
+#cancel-product-button {
+  border: 1px solid $border;
+  background-color: $surface;
+  color: $ink;
+
+  &:hover {
+    background-color: #f1f5f9;
+  }
+}
+
+// ==================================================
+// 10. Admin product table
+// ==================================================
+
+section[aria-labelledby="admin-products-title"] {
+  margin-top: 28px;
+  padding: clamp(20px, 3vw, 30px);
+  overflow-x: auto;
+  @include panel(20px);
+
+  h2 {
+    margin: 0 0 20px;
+  }
+
+  table {
+    width: 100%;
+    min-width: 740px;
+    border-collapse: collapse;
+  }
+
+  th,
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid $border;
+    text-align: left;
+  }
+
+  th {
+    color: $muted;
+    font-size: 13px;
+    font-weight: 600;
+  }
+}
+
+.admin-product-image {
+  display: block;
+  width: 72px;
+  height: 72px;
+  padding: 6px;
+  border-radius: 10px;
+  background-color: #f1f5f9;
+  object-fit: contain;
+}
+
+#add-product-button,
+.admin-edit-button,
+.admin-delete-button {
+  min-height: 40px;
+  padding: 9px 14px;
+  border-radius: 9px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+#add-product-button {
+  border: 1px solid $primary;
+  background-color: $primary;
+  color: #ffffff;
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: $primary-hover;
+    background-color: $primary-hover;
+  }
+}
+
+.admin-edit-button {
+  margin-right: 8px;
+  border: 1px solid #bfdbfe;
+  background-color: $primary-soft;
+  color: $primary-hover;
+
+  &:hover {
+    background-color: #dbeafe;
+  }
+}
+
+.admin-delete-button {
+  border: 1px solid #fecaca;
+  background-color: $danger-soft;
+  color: $danger;
+
+  &:hover {
+    background-color: #fee2e2;
+  }
+}
+
+// ==================================================
+// 11. Medium screens
+// ==================================================
+
+@media (max-width: 1000px) {
+  section[aria-label="Công cụ quản lý sản phẩm"] {
+    grid-template-columns: max-content minmax(0, 1fr);
+  }
+
+  #add-product-button {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+}
+
+// ==================================================
+// 12. Mobile: tables become cards
+// ==================================================
+
+@media (max-width: 639px) {
+  header {
+    gap: 10px;
+    padding: 14px 16px;
+
+    > a {
+      font-size: 17px;
+    }
+
+    nav a {
+      padding: 8px 10px;
+      font-size: 12px;
+    }
+  }
+
+  main {
+    width: min(100% - 28px, 1240px);
+    padding: 42px 0 32px;
+
+    h1 {
+      margin-bottom: 26px;
+    }
+  }
+
+  #product-list {
+    gap: 16px;
+  }
+
+  .product-card img {
+    height: 240px;
+  }
+
+  // Giỏ hàng trên điện thoại
+  aside[aria-labelledby="cart-title"] {
+    width: min(100% - 28px, 1240px);
+    padding: 18px;
+    overflow-x: hidden;
+
+    table {
+      display: block;
+      width: 100%;
+      min-width: 0;
+    }
+
+    thead {
+      display: none;
+    }
+  }
+
+  #cart-items,
+  #cart-items tr {
+    display: block;
+    width: 100%;
+  }
+
+  #cart-items tr {
+    margin-bottom: 15px;
+    padding: 6px 10px;
+    border: 1px solid $border;
+    border-radius: 12px;
+    background-color: $surface;
+  }
+
+  #cart-items td {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 5px;
+    padding: 12px 4px;
+    text-align: right;
+
+    &::before {
+      content: attr(data-label);
+      margin-right: auto;
+      color: $muted;
+      font-size: 13px;
+      font-weight: 600;
+      text-align: left;
+    }
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  // Công cụ và form quản trị trên điện thoại
+  section[aria-label="Công cụ quản lý sản phẩm"] {
+    grid-template-columns: 1fr;
+    gap: 8px;
+
+    label:not(:first-child) {
+      margin-top: 8px;
+    }
+  }
+
+  #add-product-button {
+    grid-column: auto;
+    justify-self: stretch;
+    margin-top: 8px;
+  }
+
+  #product-form {
+    grid-template-columns: 1fr;
+    gap: 9px;
+
+    label:not(:first-child) {
+      margin-top: 8px;
+    }
+  }
+
+  // Bảng quản trị trên điện thoại
+  section[aria-labelledby="admin-products-title"] {
+    padding: 18px;
+    overflow-x: hidden;
+
+    table {
+      display: block;
+      width: 100%;
+      min-width: 0;
+    }
+
+    thead {
+      display: none;
+    }
+  }
+
+  #admin-product-list,
+  #admin-product-list tr {
+    display: block;
+    width: 100%;
+  }
+
+  #admin-product-list tr {
+    margin-bottom: 15px;
+    padding: 6px 10px;
+    border: 1px solid $border;
+    border-radius: 12px;
+    background-color: $surface;
+  }
+
+  #admin-product-list td {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 10px 4px;
+    text-align: right;
+
+    &::before {
+      content: attr(data-label);
+      margin-right: auto;
+      color: $muted;
+      font-size: 13px;
+      font-weight: 600;
+      text-align: left;
+    }
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+}
+
+// ==================================================
+// 13. Reduced motion
+// ==================================================
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
   }
 }

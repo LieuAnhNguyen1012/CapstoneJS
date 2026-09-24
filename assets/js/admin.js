@@ -88,7 +88,11 @@ function renderAdminProducts(products) {
 
         actionCell.append(editButton, deleteButton);
 
-
+        imageCell.dataset.label = "Ảnh";
+        nameCell.dataset.label = "Tên";
+        typeCell.dataset.label = "Loại";
+        priceCell.dataset.label = "Giá";
+        actionCell.dataset.label = "Thao tác";
 
         row.append(imageCell, nameCell, typeCell, priceCell, actionCell);
         productList.append(row);
