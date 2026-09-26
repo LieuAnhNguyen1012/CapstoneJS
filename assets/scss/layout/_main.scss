@@ -1,0 +1,21 @@
+main {
+  width: min(100% - 40px, 1240px);
+  margin: 0 auto;
+  padding: clamp(40px, 6vw, 76px) 0 48px;
+
+  h1 {
+    max-width: 1050px;
+    margin: 0 0 30px;
+  }
+}
+
+@media (max-width: 639px) {
+  main {
+    width: min(100% - 28px, 1240px);
+    padding: 42px 0 32px;
+
+    h1 {
+      margin-bottom: 26px;
+    }
+  }
+}

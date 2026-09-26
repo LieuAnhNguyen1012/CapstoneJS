@@ -26,12 +26,59 @@
           type="search"
           placeholder="Nhập tên sản phẩm"
         />
-        <label for="admin-sort">Sắp xếp theo giá</label>
-        <select id="admin-sort">
-          <option value="default">Mặc định</option>
-          <option value="asc">Giá thấp đến cao</option>
-          <option value="desc">Giá cao đến thấp</option>
-        </select>
+        <label id="admin-sort-label" for="admin-sort">Sắp xếp theo giá</label>
+
+        <div class="admin-sort-control">
+          <select id="admin-sort">
+            <option value="default">Mặc định</option>
+            <option value="asc">Giá thấp đến cao</option>
+            <option value="desc">Giá cao đến thấp</option>
+          </select>
+          <button
+            id="admin-sort-trigger"
+            type="button"
+            aria-haspopup="listbox"
+            aria-expanded="false"
+            aria-controls="admin-sort-options"
+            aria-labelledby="admin-sort-label admin-sort-value"
+            hidden
+          >
+            <span id="admin-sort-value">Mặc định</span>
+            <span class="select-chevron" aria-hidden="true"></span>
+          </button>
+
+          <div
+            id="admin-sort-options"
+            role="listbox"
+            aria-labelledby="admin-sort-label"
+            hidden
+          >
+            <button
+              type="button"
+              role="option"
+              data-value="default"
+              aria-selected="true"
+            >
+              Mặc định
+            </button>
+            <button
+              type="button"
+              role="option"
+              data-value="asc"
+              aria-selected="false"
+            >
+              Giá thấp đến cao
+            </button>
+            <button
+              type="button"
+              role="option"
+              data-value="desc"
+              aria-selected="false"
+            >
+              Giá cao đến thấp
+            </button>
+          </div>
+        </div>
 
         <button type="button" id="add-product-button">Thêm sản phẩm</button>
       </section>

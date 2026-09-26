@@ -113,6 +113,19 @@ header nav a:hover {
   color: #1d4ed8;
 }
 
+@media (max-width: 639px) {
+  header {
+    gap: 10px;
+    padding: 14px 16px;
+  }
+  header > a {
+    font-size: 17px;
+  }
+  header nav a {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+}
 main {
   width: min(100% - 40px, 1240px);
   margin: 0 auto;
@@ -123,6 +136,15 @@ main h1 {
   margin: 0 0 30px;
 }
 
+@media (max-width: 639px) {
+  main {
+    width: min(100% - 28px, 1240px);
+    padding: 42px 0 32px;
+  }
+  main h1 {
+    margin-bottom: 26px;
+  }
+}
 label[for=product-filter] {
   display: block;
   margin-bottom: 9px;
@@ -194,7 +216,7 @@ label[for=product-filter] {
   height: 230px;
   padding: 18px;
   border-radius: 14px;
-  background: radial-gradient(circle at 50% 35%, #ffffff, #f1f5f9 78%);
+  background: #ffffff;
   object-fit: contain;
   transition: transform 0.25s ease;
 }
@@ -233,6 +255,14 @@ label[for=product-filter] {
   box-shadow: 0 9px 20px rgba(37, 99, 235, 0.2);
 }
 
+@media (max-width: 639px) {
+  #product-list {
+    gap: 16px;
+  }
+  .product-card img {
+    height: 240px;
+  }
+}
 aside[aria-labelledby=cart-title] {
   width: min(100% - 40px, 1240px);
   margin: 0 auto 72px;
@@ -309,6 +339,52 @@ aside[aria-labelledby=cart-title] p {
   box-shadow: 0 9px 20px rgba(37, 99, 235, 0.2);
 }
 
+@media (max-width: 639px) {
+  aside[aria-labelledby=cart-title] {
+    width: min(100% - 28px, 1240px);
+    padding: 18px;
+    overflow-x: hidden;
+  }
+  aside[aria-labelledby=cart-title] table {
+    display: block;
+    width: 100%;
+    min-width: 0;
+  }
+  aside[aria-labelledby=cart-title] thead {
+    display: none;
+  }
+  #cart-items,
+  #cart-items tr {
+    display: block;
+    width: 100%;
+  }
+  #cart-items tr {
+    margin-bottom: 15px;
+    padding: 6px 10px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    background-color: #ffffff;
+  }
+  #cart-items td {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 5px;
+    padding: 12px 4px;
+    text-align: right;
+  }
+  #cart-items td::before {
+    content: attr(data-label);
+    margin-right: auto;
+    color: #64748b;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: left;
+  }
+  #cart-items td:last-child {
+    border-bottom: 0;
+  }
+}
 section[aria-label="Công cụ quản lý sản phẩm"] {
   display: grid;
   grid-template-columns: max-content minmax(130px, 1fr) max-content minmax(160px, 1fr) auto;
@@ -345,6 +421,104 @@ section[aria-label="Công cụ quản lý sản phẩm"] select:hover {
 section[aria-label="Công cụ quản lý sản phẩm"] input:focus-visible,
 section[aria-label="Công cụ quản lý sản phẩm"] select:focus-visible {
   border-color: #2563eb;
+}
+
+@media (max-width: 1000px) {
+  section[aria-label="Công cụ quản lý sản phẩm"] {
+    grid-template-columns: max-content minmax(0, 1fr);
+  }
+  #add-product-button {
+    grid-column: 1/-1;
+    justify-self: start;
+  }
+}
+@media (max-width: 639px) {
+  section[aria-label="Công cụ quản lý sản phẩm"] {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  section[aria-label="Công cụ quản lý sản phẩm"] label:not(:first-child) {
+    margin-top: 8px;
+  }
+  #add-product-button {
+    grid-column: auto;
+    justify-self: stretch;
+    margin-top: 8px;
+  }
+}
+:is(.admin-sort-control, .product-filter-control) {
+  position: relative;
+  width: min(100%, 240px);
+}
+
+:is(#admin-sort-trigger, #product-filter-trigger):not([hidden]) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background-color: #ffffff;
+  color: #0f172a;
+  font: inherit;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+:is(#admin-sort-trigger, #product-filter-trigger):not([hidden]):hover {
+  border-color: #2563eb;
+}
+:is(#admin-sort-trigger, #product-filter-trigger):not([hidden])[aria-expanded=true] {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+:is(#admin-sort-options, #product-filter-options):not([hidden]) {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 8px);
+  left: 0;
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background-color: #ffffff;
+  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.14);
+}
+
+:is(#admin-sort-options, #product-filter-options) [role=option] {
+  display: block;
+  width: 100%;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: #0f172a;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+:is(#admin-sort-options, #product-filter-options) [role=option]:hover, :is(#admin-sort-options, #product-filter-options) [role=option]:focus-visible {
+  background-color: #eff6ff;
+}
+:is(#admin-sort-options, #product-filter-options) [role=option][aria-selected=true] {
+  color: #2563eb;
+  font-weight: 600;
+}
+
+:is(#admin-sort-trigger, #product-filter-trigger) .select-chevron {
+  width: 9px;
+  height: 9px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+:is(#admin-sort-trigger, #product-filter-trigger)[aria-expanded=true] .select-chevron {
+  transform: rotate(225deg);
 }
 
 #product-form-section {
@@ -432,6 +606,15 @@ section[aria-label="Công cụ quản lý sản phẩm"] select:focus-visible {
   background-color: #f1f5f9;
 }
 
+@media (max-width: 639px) {
+  #product-form {
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+  #product-form label:not(:first-child) {
+    margin-top: 8px;
+  }
+}
 section[aria-labelledby=admin-products-title] {
   margin-top: 28px;
   padding: clamp(20px, 3vw, 30px);
@@ -467,147 +650,11 @@ section[aria-labelledby=admin-products-title] th {
   height: 72px;
   padding: 6px;
   border-radius: 10px;
-  background-color: #f1f5f9;
+  background-color: #ffffff;
   object-fit: contain;
 }
 
-#add-product-button,
-.admin-edit-button,
-.admin-delete-button {
-  min-height: 40px;
-  padding: 9px 14px;
-  border-radius: 9px;
-  font-weight: 600;
-  transition: all 0.2s ease;
-}
-
-#add-product-button {
-  border: 1px solid #2563eb;
-  background-color: #2563eb;
-  color: #ffffff;
-}
-#add-product-button:hover {
-  transform: translateY(-2px);
-  border-color: #1d4ed8;
-  background-color: #1d4ed8;
-}
-
-.admin-edit-button {
-  margin-right: 8px;
-  border: 1px solid #bfdbfe;
-  background-color: #eff6ff;
-  color: #1d4ed8;
-}
-.admin-edit-button:hover {
-  background-color: #dbeafe;
-}
-
-.admin-delete-button {
-  border: 1px solid #fecaca;
-  background-color: #fef2f2;
-  color: #dc2626;
-}
-.admin-delete-button:hover {
-  background-color: #fee2e2;
-}
-
-@media (max-width: 1000px) {
-  section[aria-label="Công cụ quản lý sản phẩm"] {
-    grid-template-columns: max-content minmax(0, 1fr);
-  }
-  #add-product-button {
-    grid-column: 1/-1;
-    justify-self: start;
-  }
-}
 @media (max-width: 639px) {
-  header {
-    gap: 10px;
-    padding: 14px 16px;
-  }
-  header > a {
-    font-size: 17px;
-  }
-  header nav a {
-    padding: 8px 10px;
-    font-size: 12px;
-  }
-  main {
-    width: min(100% - 28px, 1240px);
-    padding: 42px 0 32px;
-  }
-  main h1 {
-    margin-bottom: 26px;
-  }
-  #product-list {
-    gap: 16px;
-  }
-  .product-card img {
-    height: 240px;
-  }
-  aside[aria-labelledby=cart-title] {
-    width: min(100% - 28px, 1240px);
-    padding: 18px;
-    overflow-x: hidden;
-  }
-  aside[aria-labelledby=cart-title] table {
-    display: block;
-    width: 100%;
-    min-width: 0;
-  }
-  aside[aria-labelledby=cart-title] thead {
-    display: none;
-  }
-  #cart-items,
-  #cart-items tr {
-    display: block;
-    width: 100%;
-  }
-  #cart-items tr {
-    margin-bottom: 15px;
-    padding: 6px 10px;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
-    background-color: #ffffff;
-  }
-  #cart-items td {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 5px;
-    padding: 12px 4px;
-    text-align: right;
-  }
-  #cart-items td::before {
-    content: attr(data-label);
-    margin-right: auto;
-    color: #64748b;
-    font-size: 13px;
-    font-weight: 600;
-    text-align: left;
-  }
-  #cart-items td:last-child {
-    border-bottom: 0;
-  }
-  section[aria-label="Công cụ quản lý sản phẩm"] {
-    grid-template-columns: 1fr;
-    gap: 8px;
-  }
-  section[aria-label="Công cụ quản lý sản phẩm"] label:not(:first-child) {
-    margin-top: 8px;
-  }
-  #add-product-button {
-    grid-column: auto;
-    justify-self: stretch;
-    margin-top: 8px;
-  }
-  #product-form {
-    grid-template-columns: 1fr;
-    gap: 9px;
-  }
-  #product-form label:not(:first-child) {
-    margin-top: 8px;
-  }
   section[aria-labelledby=admin-products-title] {
     padding: 18px;
     overflow-x: hidden;
@@ -652,6 +699,46 @@ section[aria-labelledby=admin-products-title] th {
     border-bottom: 0;
   }
 }
+#add-product-button,
+.admin-edit-button,
+.admin-delete-button {
+  min-height: 40px;
+  padding: 9px 14px;
+  border-radius: 9px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+#add-product-button {
+  border: 1px solid #2563eb;
+  background-color: #2563eb;
+  color: #ffffff;
+}
+#add-product-button:hover {
+  transform: translateY(-2px);
+  border-color: #1d4ed8;
+  background-color: #1d4ed8;
+}
+
+.admin-edit-button {
+  margin-right: 8px;
+  border: 1px solid #bfdbfe;
+  background-color: #eff6ff;
+  color: #1d4ed8;
+}
+.admin-edit-button:hover {
+  background-color: #dbeafe;
+}
+
+.admin-delete-button {
+  border: 1px solid #fecaca;
+  background-color: #fef2f2;
+  color: #dc2626;
+}
+.admin-delete-button:hover {
+  background-color: #fee2e2;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

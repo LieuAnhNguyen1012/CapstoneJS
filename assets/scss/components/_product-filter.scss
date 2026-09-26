@@ -1,0 +1,17 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+label[for="product-filter"] {
+  display: block;
+  margin-bottom: 9px;
+  color: $muted;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+#product-filter {
+  @include field;
+
+  width: min(100%, 260px);
+  cursor: pointer;
+}

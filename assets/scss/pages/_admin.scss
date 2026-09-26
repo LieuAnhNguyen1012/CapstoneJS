@@ -1,0 +1,134 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+section[aria-label="Công cụ quản lý sản phẩm"] {
+  display: grid;
+  grid-template-columns:
+    max-content minmax(130px, 1fr)
+    max-content minmax(160px, 1fr)
+    auto;
+  align-items: center;
+  gap: 12px;
+  padding: 20px;
+  @include panel(18px);
+
+  label {
+    color: $muted;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  input,
+  select {
+    @include field;
+  }
+}
+
+@media (max-width: 1000px) {
+  section[aria-label="Công cụ quản lý sản phẩm"] {
+    grid-template-columns: max-content minmax(0, 1fr);
+  }
+
+  #add-product-button {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+}
+
+@media (max-width: 639px) {
+  section[aria-label="Công cụ quản lý sản phẩm"] {
+    grid-template-columns: 1fr;
+    gap: 8px;
+
+    label:not(:first-child) {
+      margin-top: 8px;
+    }
+  }
+
+  #add-product-button {
+    grid-column: auto;
+    justify-self: stretch;
+    margin-top: 8px;
+  }
+}
+
+:is(.admin-sort-control, .product-filter-control) {
+  position: relative;
+  width: min(100%, 240px);
+}
+
+:is(#admin-sort-trigger, #product-filter-trigger):not([hidden]) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 14px;
+  border: 1px solid $border;
+  border-radius: 10px;
+  background-color: $surface;
+  color: $ink;
+  font: inherit;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    border-color: $primary;
+  }
+
+  &[aria-expanded="true"] {
+    border-color: $primary;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+  }
+}
+
+:is(#admin-sort-options, #product-filter-options):not([hidden]) {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 8px);
+  left: 0;
+  width: 100%;
+  padding: 6px;
+  border: 1px solid $border;
+  border-radius: 12px;
+  background-color: $surface;
+  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.14);
+}
+
+:is(#admin-sort-options, #product-filter-options) [role="option"] {
+  display: block;
+  width: 100%;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: $ink;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible {
+    background-color: #eff6ff;
+  }
+
+  &[aria-selected="true"] {
+    color: $primary;
+    font-weight: 600;
+  }
+}
+
+:is(#admin-sort-trigger, #product-filter-trigger) .select-chevron {
+  width: 9px;
+  height: 9px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+:is(#admin-sort-trigger, #product-filter-trigger)[aria-expanded="true"]
+  .select-chevron {
+  transform: rotate(225deg);
+}

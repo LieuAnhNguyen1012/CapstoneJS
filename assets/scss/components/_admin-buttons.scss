@@ -1,0 +1,44 @@
+@use "../abstracts/variables" as *;
+
+#add-product-button,
+.admin-edit-button,
+.admin-delete-button {
+  min-height: 40px;
+  padding: 9px 14px;
+  border-radius: 9px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+#add-product-button {
+  border: 1px solid $primary;
+  background-color: $primary;
+  color: #ffffff;
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: $primary-hover;
+    background-color: $primary-hover;
+  }
+}
+
+.admin-edit-button {
+  margin-right: 8px;
+  border: 1px solid #bfdbfe;
+  background-color: $primary-soft;
+  color: $primary-hover;
+
+  &:hover {
+    background-color: #dbeafe;
+  }
+}
+
+.admin-delete-button {
+  border: 1px solid #fecaca;
+  background-color: $danger-soft;
+  color: $danger;
+
+  &:hover {
+    background-color: #fee2e2;
+  }
+}

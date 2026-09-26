@@ -1,0 +1,29 @@
+@use "variables" as *;
+
+@mixin panel($radius: 20px) {
+  border: 1px solid $border;
+  border-radius: $radius;
+  background-color: $surface;
+  box-shadow: $shadow-card;
+}
+
+@mixin field {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid $border;
+  border-radius: 10px;
+  background-color: $surface;
+  color: $ink;
+  font: inherit;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: #94a3b8;
+  }
+
+  &:focus-visible {
+    border-color: $primary;
+  }
+}

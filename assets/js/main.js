@@ -1,5 +1,9 @@
 import { getProducts } from "./services/productServices.js";
 import { Cart } from "./models/Cart.js";
+import { setupCustomSelect } from "./components/customSelect.js";
+
+
+
 const cart = new Cart();
 try {
     const savedItems = JSON.parse(
@@ -161,5 +165,5 @@ checkoutButton.addEventListener("click", () => {
 
 
 renderCart();
-
+setupCustomSelect("product-filter");
 loadProducts();

@@ -1,0 +1,83 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+#product-form-section {
+  margin-top: 26px;
+  padding: clamp(20px, 3vw, 30px);
+  @include panel(20px);
+
+  h2 {
+    margin: 0 0 22px;
+  }
+}
+
+#product-form {
+  display: grid;
+  grid-template-columns: minmax(140px, 200px) minmax(0, 1fr);
+  align-items: center;
+  gap: 13px 20px;
+
+  label {
+    color: $muted;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  input,
+  select,
+  textarea {
+    @include field;
+  }
+
+  textarea {
+    min-height: 90px;
+    resize: vertical;
+  }
+
+  button {
+    min-height: 44px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+}
+
+#product-form-error {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: $danger;
+  font-weight: 600;
+}
+
+#product-submit-button {
+  border: 1px solid $primary;
+  background-color: $primary;
+  color: #ffffff;
+
+  &:hover {
+    border-color: $primary-hover;
+    background-color: $primary-hover;
+  }
+}
+
+#cancel-product-button {
+  border: 1px solid $border;
+  background-color: $surface;
+  color: $ink;
+
+  &:hover {
+    background-color: #f1f5f9;
+  }
+}
+
+@media (max-width: 639px) {
+  #product-form {
+    grid-template-columns: 1fr;
+    gap: 9px;
+
+    label:not(:first-child) {
+      margin-top: 8px;
+    }
+  }
+}

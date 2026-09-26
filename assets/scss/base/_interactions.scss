@@ -1,0 +1,36 @@
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  transition: all 0.2s ease;
+}
+
+button:not(:disabled) {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.28);
+  outline-offset: 3px;
+}
+
+[hidden] {
+  display: none !important;
+}

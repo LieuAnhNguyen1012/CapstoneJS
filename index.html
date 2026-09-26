@@ -18,12 +18,62 @@
       <section aria-labelledby="products-title">
         <h1 id="products-title">Điện thoại</h1>
 
-        <label for="product-filter">Lọc theo hãng</label>
-        <select id="product-filter">
-          <option value="all">Tất cả</option>
-          <option value="iphone">iPhone</option>
-          <option value="samsung">Samsung</option>
-        </select>
+        <label id="product-filter-label" for="product-filter"
+          >Lọc theo hãng</label
+        >
+
+        <div class="product-filter-control">
+          <select id="product-filter">
+            <option value="all">Tất cả</option>
+            <option value="iphone">iPhone</option>
+            <option value="samsung">Samsung</option>
+          </select>
+
+          <button
+            id="product-filter-trigger"
+            type="button"
+            aria-haspopup="listbox"
+            aria-expanded="false"
+            aria-controls="product-filter-options"
+            aria-labelledby="product-filter-label product-filter-value"
+            hidden
+          >
+            <span id="product-filter-value">Tất cả</span>
+            <span class="select-chevron" aria-hidden="true"></span>
+          </button>
+
+          <div
+            id="product-filter-options"
+            role="listbox"
+            aria-labelledby="product-filter-label"
+            hidden
+          >
+            <button
+              type="button"
+              role="option"
+              data-value="all"
+              aria-selected="true"
+            >
+              Tất cả
+            </button>
+            <button
+              type="button"
+              role="option"
+              data-value="iphone"
+              aria-selected="false"
+            >
+              iPhone
+            </button>
+            <button
+              type="button"
+              role="option"
+              data-value="samsung"
+              aria-selected="false"
+            >
+              Samsung
+            </button>
+          </div>
+        </div>
 
         <div id="product-list">
           <p>Đang chuẩn bị danh sách sản phẩm...</p>
